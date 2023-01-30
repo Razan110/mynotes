@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:mynotes/services/crud/crud_exceptions.dart';
 import 'package:sqflite/sqflite.dart';
@@ -12,13 +11,20 @@ class NoteService {
   List<DatabaseNote> _notes = [];
   //creat a sigleton
   static final NoteService _shared = NoteService._sharedInstance();
-  NoteService._sharedInstance();
+  NoteService._sharedInstance() {
+    _notesStreamController = StreamController<List<DatabaseNote>>.broadcast(
+      onListen: () {
+        _notesStreamController.sink.add(_notes);
+      },
+    );
+  }
+  
   factory NoteService() => _shared;
   //*
+  late final StreamController<List<DatabaseNote>> _notesStreamController;
+
   Stream<List<DatabaseNote>> get allNotes => _notesStreamController.stream;
 
-  final _notesStreamController =
-      StreamController<List<DatabaseNote>>.broadcast();
   Future<DatabaseUser> getOrCtreateUser({required String email}) async {
     try {
       final user = await getUser(email: email);
@@ -40,7 +46,7 @@ class NoteService {
 
   Future<void> _ensureDbIsOpen() async {
     try {
-      await open;
+      await open();
     } on DatabaseIsAlreadyOpenException {
       // empty
     }
