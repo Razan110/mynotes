@@ -37,7 +37,7 @@ void main() {
 
     test('Create user should delegate to logIn function', () async {
       final badEmailUser = provider.createUser(
-        email: 'foopo@bar.com',
+        email: 'foo@bar.com',
         password: 'anypassword',
       );
 
@@ -91,7 +91,7 @@ class MockAuthProvider implements AuthProvider {
     required String password,
   }) async {
     if (!isInitialized) throw NotInitializedException();
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     return logIn(
       email: email,
       password: password,
@@ -115,19 +115,16 @@ class MockAuthProvider implements AuthProvider {
     if (!isInitialized) throw NotInitializedException();
     if (email == 'foo@bar.com') throw UserNotFoundAuthException();
     if (password == 'foobar') throw WrongPasswordAuthException();
-
-    const user = AuthUser(isEmailVerified: true);
+    const user = AuthUser(isEmailVerified: false);
     _user = user;
     return Future.value(user);
   }
 
   @override
   Future<void> logOut() async {
-    if (!isInitialized) {
-      throw NotInitializedException();
-    }
+    if (!isInitialized) throw NotInitializedException();
     if (_user == null) throw UserNotFoundAuthException();
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     _user = null;
   }
 
