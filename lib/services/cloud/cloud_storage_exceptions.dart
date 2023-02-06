@@ -6,7 +6,7 @@ class CloudStrorageExecption implements Exception {
 class CouldNotCreateNoteException extends CloudStrorageExecption {}
 //R in CRUD
 
-class CouldNotGetAllNoteException extends CloudStrorageExecption {}
+class CouldNotGetAllNotesException extends CloudStrorageExecption {}
 
 //U in CRUD
 class CouldNotUpdateNoteException extends CloudStrorageExecption {}

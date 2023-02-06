@@ -15,7 +15,6 @@ class AuthStateLoggedIn extends AuthState {
   const AuthStateLoggedIn(this.user);
 }
 
-
 class AuthStateNeedsVerification extends AuthState {
   const AuthStateNeedsVerification();
 }
