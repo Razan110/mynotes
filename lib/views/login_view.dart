@@ -55,8 +55,6 @@ class _LoginViewState extends State<LoginView> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const Text(
-                  'Please login to your account, to create your special notes!'),
               TextField(
                 controller: _email,
                 enableSuggestions: false,
@@ -86,7 +84,8 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       );
                 },
-                child: const Text('Login'),
+                child: const Text('Login',
+                    style: TextStyle(color: Color.fromARGB(255, 36, 40, 59))),
               ),
               TextButton(
                 onPressed: () {
@@ -94,7 +93,8 @@ class _LoginViewState extends State<LoginView> {
                         const AuthEventShouldRegister(),
                       );
                 },
-                child: const Text('Not registered yet? Register here!'),
+                child: const Text('Not registered yet? Register here!',
+                    style: TextStyle(color: Color.fromARGB(255, 36, 40, 59))),
               ),
               TextButton(
                 onPressed: () {
@@ -102,7 +102,8 @@ class _LoginViewState extends State<LoginView> {
                         const AuthEventForgotPassword(),
                       );
                 },
-                child: const Text('Forgot password?'),
+                child: const Text('Forgot password?',
+                    style: TextStyle(color: Color.fromARGB(255, 36, 40, 59))),
               )
             ],
           ),

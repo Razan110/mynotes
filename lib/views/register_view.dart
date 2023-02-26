@@ -58,7 +58,6 @@ class _RegisterViewState extends State<RegisterView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Enter your email and password to see your notes!'),
               TextField(
                 controller: _email,
                 enableSuggestions: false,
@@ -92,7 +91,9 @@ class _RegisterViewState extends State<RegisterView> {
                               ),
                             );
                       },
-                      child: const Text('Register'),
+                      child: const Text('Register',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 36, 40, 59))),
                     ),
                     TextButton(
                       onPressed: () {
@@ -100,7 +101,9 @@ class _RegisterViewState extends State<RegisterView> {
                               const AuthEventLogOut(),
                             );
                       },
-                      child: const Text('Already registered? Login here!'),
+                      child: const Text('Already registered? Login here!',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 36, 40, 59))),
                     )
                   ],
                 ),
